@@ -14,10 +14,17 @@ const Planet = () => {
     if (error) {
         return <Message msg={`ERROR${error.status}: ${error.statusText}`} bgColor='#dc3545'/>
     }
-    
+    let poblacion = new Intl.NumberFormat().format(data.population)
+    let Diametro = new Intl.NumberFormat().format(data.diameter)
     return (
         <div>
             <h1>Planeta {data.name}</h1>
+            <ul>
+                <li>Periodo de Rotacion: {data.rotation_period} Hs</li>
+                <li>Periodo de orbita: {data.orbital_period} Dias</li>
+                <li>Diametro: {Diametro} Km</li>
+                <li>Población: {poblacion} habitantes</li>
+            </ul>
         </div>
     );
 }

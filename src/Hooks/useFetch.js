@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 
 
+
 export const useFetch = (url) => {
     const [data, setData] = useState(null)
     const [loading, setLoading] = useState(false)
@@ -45,7 +46,7 @@ export const useFetch = (url) => {
         finally{
 
             if (!signal.aborted) {
-                setLoading(false)    
+                setLoading(false)
             }
 
         }
@@ -58,5 +59,21 @@ export const useFetch = (url) => {
 
     }, [url])//este useEffect se va a actualizar cuando se haga una peticion a la url
 
-    return { data, loading, error }
+    const handleNext = ()=> {
+        const siguiente = data && data.next
+
+        fetch(siguiente)
+        .then((res)=> res.json())
+        .then((data)=> setData(data))
+    }
+
+    const handlePrev= ()=> {
+        const anterior = data && data.previous
+
+        fetch(anterior)
+        .then((res)=>res.json())
+        .then((data)=> setData(data))
+    }
+
+    return { data, loading, error, handleNext, handlePrev }
 }

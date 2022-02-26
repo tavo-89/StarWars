@@ -1,13 +1,13 @@
-import { Grid } from "@material-ui/core";
 import React from "react";
+import { Grid } from "@material-ui/core";
 import {useFetch} from '../Hooks/useFetch'
 import Loader from '../Components/Loader'
 import Message from '../Components/Message'
 import CardPeople from '../Components/CardPeople'
 
-const People = () => {
-    const {data, error, loading} = useFetch('https://swapi.dev/api/people/')
+const People = () => {    
     
+    const {data, error, loading, handleNext, handlePrev} = useFetch(`https://swapi.dev/api/people/?page=1`)
     let db = data
     
     if (!db) {
@@ -16,6 +16,7 @@ const People = () => {
     if (error) {
         return <Message msg={`ERROR${error.status}: ${error.statusText}`} bgColor='#dc3545'/>
     }
+
 
     return (
         <div>
@@ -34,6 +35,10 @@ const People = () => {
                 })}
 
             </Grid>
+            <nav>
+                <button onClick={handlePrev} disabled={!db.previous}>Previusly</button>
+                <button onClick={handleNext} disabled={!db.next}>Next</button>
+            </nav>
         </div>
     );
 };
