@@ -1,27 +1,28 @@
-import React from "react";
 import { Grid } from "@material-ui/core";
+import React from "react";
 import {useFetch} from '../Hooks/useFetch'
 import Loader from '../Components/Loader'
 import Message from '../Components/Message'
-import CardPeople from '../Components/CardPeople'
+import CardSpecies from '../Components/CardSpecies'
 
-const People = () => {    
-    
-    const {data, error, loading, handleNext, handlePrev} = useFetch(`https://swapi.dev/api/people/?page=1`)
+const Species = () => {
+
+    const {data, error, loading, handleNext, handlePrev} = useFetch('https://swapi.dev/api/species/?page=1')
+
     let db = data
-    
+    console.log(db)
+
     if (!db) {
         return null
     }
     if (error) {
         return <Message msg={`ERROR${error.status}: ${error.statusText}`} bgColor='#dc3545'/>
     }
-
     let page = db.next.match(/[0-9]+/) - 1
 
     return (
         <div>
-        <h1>Personajes</h1>
+        <h1>Especies</h1>
             <Grid
                 container
                 spacing={2}
@@ -31,8 +32,8 @@ const People = () => {
                 >
 
                     {loading && <Loader/>}
-                {db.results.map((personaje,i) => {
-                return <CardPeople key={i} dato={personaje}/>;
+                {db.results.map((vehiculo) => {
+                return <CardSpecies key={vehiculo.url} dato={vehiculo} />;
                 })}
 
             </Grid>
@@ -43,6 +44,6 @@ const People = () => {
             </nav>
         </div>
     );
-};
+}
 
-export default People;
+export default Species;

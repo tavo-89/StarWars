@@ -1,15 +1,17 @@
-import React from "react";
 import { Grid } from "@material-ui/core";
+import React from "react";
 import {useFetch} from '../Hooks/useFetch'
+import CardVehicle from '../Components/CardVehicle'
 import Loader from '../Components/Loader'
 import Message from '../Components/Message'
-import CardPeople from '../Components/CardPeople'
 
-const People = () => {    
-    
-    const {data, error, loading, handleNext, handlePrev} = useFetch(`https://swapi.dev/api/people/?page=1`)
+const Vehicles = () => {
+
+    const {data, error, loading, handleNext, handlePrev} = useFetch('https://swapi.dev/api/vehicles/?page=1')
+
     let db = data
-    
+    console.log(db)
+
     if (!db) {
         return null
     }
@@ -21,7 +23,7 @@ const People = () => {
 
     return (
         <div>
-        <h1>Personajes</h1>
+        <h1>Vehículos</h1>
             <Grid
                 container
                 spacing={2}
@@ -31,8 +33,8 @@ const People = () => {
                 >
 
                     {loading && <Loader/>}
-                {db.results.map((personaje,i) => {
-                return <CardPeople key={i} dato={personaje}/>;
+                {db.results.map((vehiculo) => {
+                return <CardVehicle key={vehiculo.url} data={vehiculo} />;
                 })}
 
             </Grid>
@@ -43,6 +45,6 @@ const People = () => {
             </nav>
         </div>
     );
-};
+}
 
-export default People;
+export default Vehicles;

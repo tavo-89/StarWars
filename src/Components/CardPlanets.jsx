@@ -23,16 +23,19 @@ const useStyles = makeStyles({
 const CardPlanets = ({data}) => {
 
   const classes = useStyles();
+  
+  let diametro = new Intl.NumberFormat().format(data.diameter)
+  let poblacion = new Intl.NumberFormat().format(data.population)
 
     return (
       <Grid container item lg={3} md={4} sm={12}>
         <Card className={classes.root}> 
 
               <Typography gutterBottom variant="h3" component="h2">{data.name}</Typography>
-              <Typography gutterBottom variant="h5" component="h4"> Clima: {data.climate}</Typography>
-              <Typography gutterBottom variant="h5" component="h4"> Diametro: {data.diameter}km</Typography>
-              <Typography gutterBottom variant="h5" component="h4"> Poblacion: {data.population}</Typography>
-              <Typography gutterBottom variant="h5" component="h4">Terreno: {data.terrain}</Typography>
+              <li> Clima: {data.climate}</li>
+              <li> Diametro: {diametro}km</li>
+              <li> Poblacion: {poblacion} habitantes</li>
+              <li>Terreno: {data.terrain}</li>
               
           <CardActions className={classes.button}>
 

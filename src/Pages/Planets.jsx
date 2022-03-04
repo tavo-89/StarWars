@@ -6,7 +6,7 @@ import Loader from '../Components/Loader'
 import Message from '../Components/Message'
 
 const Planets = () => {
-    const {data, error, loading} = useFetch('https://swapi.dev/api/planets/')
+    const {data, error, loading, handleNext, handlePrev} = useFetch('https://swapi.dev/api/planets/?page=1')
 
     let db = data
     console.log(db)
@@ -17,6 +17,7 @@ const Planets = () => {
     if (error) {
         return <Message msg={`ERROR${error.status}: ${error.statusText}`} bgColor='#dc3545'/>
     }
+    let page = db.next.match(/[0-9]+/) - 1
 
     return (
         <div>
@@ -35,6 +36,11 @@ const Planets = () => {
                 })}
 
             </Grid>
+            <nav>
+                <button onClick={handlePrev} disabled={!db.previous}>Previusly</button>
+                {page}
+                <button onClick={handleNext} disabled={!db.next}>Next</button>
+            </nav>
         </div>
     );
 };

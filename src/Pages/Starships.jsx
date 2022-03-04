@@ -1,27 +1,28 @@
-import React from "react";
 import { Grid } from "@material-ui/core";
+import React from "react";
 import {useFetch} from '../Hooks/useFetch'
 import Loader from '../Components/Loader'
 import Message from '../Components/Message'
-import CardPeople from '../Components/CardPeople'
+import Cardstarships from "../Components/cardStarships";
 
-const People = () => {    
-    
-    const {data, error, loading, handleNext, handlePrev} = useFetch(`https://swapi.dev/api/people/?page=1`)
+const Starships = () => {
+
+    const {data, error, loading, handleNext, handlePrev} = useFetch('https://swapi.dev/api/starships/?page=1')
+
     let db = data
-    
+    console.log(db)
+
     if (!db) {
         return null
     }
     if (error) {
         return <Message msg={`ERROR${error.status}: ${error.statusText}`} bgColor='#dc3545'/>
     }
-
     let page = db.next.match(/[0-9]+/) - 1
 
     return (
         <div>
-        <h1>Personajes</h1>
+        <h1>Naves Estelares</h1>
             <Grid
                 container
                 spacing={2}
@@ -31,8 +32,8 @@ const People = () => {
                 >
 
                     {loading && <Loader/>}
-                {db.results.map((personaje,i) => {
-                return <CardPeople key={i} dato={personaje}/>;
+                {db.results.map((vehiculo) => {
+                return <Cardstarships key={vehiculo.url} data={vehiculo} />;
                 })}
 
             </Grid>
@@ -43,6 +44,6 @@ const People = () => {
             </nav>
         </div>
     );
-};
+}
 
-export default People;
+export default Starships;
