@@ -17,6 +17,9 @@ const useStyles = makeStyles({
   button: {
     display:'flex',
     justifyContent:'space-around'
+  },
+  card: {
+      justifyContent: 'center'
   }
 });  
 
@@ -28,7 +31,7 @@ const CardPlanets = ({data}) => {
   let poblacion = new Intl.NumberFormat().format(data.population)
 
     return (
-      <Grid container item lg={3} md={4} sm={12}>
+      <Grid className={classes.card} container item lg={3} md={4} sm={12}>
         <Card className={classes.root}> 
 
               <Typography gutterBottom variant="h3" component="h2">{data.name}</Typography>

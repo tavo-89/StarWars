@@ -10,15 +10,12 @@ import Vehicles from './Pages/Vehicles';
 import Starships from './Pages/Starships';
 
 
-
-
-
-
 function App() {
   return (
     <div>
       <Router>
-        <Header/>
+
+        <Header/>  
         
           <Routes>
             <Route path='/' element={<Home/>}/>
@@ -30,6 +27,7 @@ function App() {
             <Route path='/vehicles' element={<Vehicles/>}/>
             <Route path='/starships' element={<Starships/>}/>
           </Routes>
+
       </Router>
     </div>
   );
