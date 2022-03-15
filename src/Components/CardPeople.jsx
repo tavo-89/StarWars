@@ -1,10 +1,6 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import { Grid } from '@material-ui/core';
+import {useFetch} from '../Hooks/useFetch'
+import {makeStyles, Card, CardActions, Button, Typography, Grid } from '@material-ui/core'
 import { Link } from 'react-router-dom';
 
 
@@ -29,10 +25,10 @@ const useStyles = makeStyles({
     const CardPeoples = ({dato}) => {
 
     const classes = useStyles();
-    
+    const {data: homeWorld} = useFetch(dato.homeworld)
+        
     let planeta = dato.homeworld
     let id= planeta.match(/[0-9]+/)
-    
     
     return (
         <Grid className={classes.card} container item lg={3} md={4} sm={12}>
@@ -43,12 +39,17 @@ const useStyles = makeStyles({
                         <li>Edad: {dato.birth_year}</li>
                         <li> Genero: {dato.gender}</li>
                         <li> Altura: {dato.height}cm</li>
+                        <li> Planeta de Origen: <Link to={`/planet/${id}`}>{homeWorld != null ? homeWorld.name : planeta}</Link> </li>
                     </ul>
                 
             <CardActions className={classes.button}>
 
                 <Button size="small" color="primary">
-                    <Link to={`/planet/${id}`}>planeta de origen</Link>
+                    Agregar a Favoritos
+                </Button>
+
+                <Button size="small" color="primary">
+                    learn more
                 </Button>
 
 

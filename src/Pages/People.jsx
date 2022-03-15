@@ -17,25 +17,22 @@ const People = () => {
         return <Message msg={`ERROR${error.status}: ${error.statusText}`} bgColor='#dc3545'/>
     }
 
+
     let page = db.next.match(/[0-9]+/) - 1
 
     return (
         <div>
         <h1>Personajes</h1>
-            <Grid
-                container
-                spacing={2}
-                direction="row"
-                justifyContent="center"
-                alignItems="stretch"
-                >
+            <Grid container spacing={2} direction="row" justifyContent="center" alignItems="stretch">
 
                     {loading && <Loader/>}
-                {db.results.map((personaje,i) => {
-                return <CardPeople key={i} dato={personaje}/>;
-                })}
+
+                    {db.results.map((personaje,i) => {
+                    return <CardPeople key={i} dato={personaje}/>;
+                    })}
 
             </Grid>
+            
             <nav>
                 <button onClick={handlePrev} disabled={!db.previous}>Previusly</button>
                 {page}

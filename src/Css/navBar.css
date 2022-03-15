@@ -1,0 +1,45 @@
+.appBar{
+    background-color:rgba(0, 0, 0, 0.637) ;
+    padding-bottom: 4px;
+}
+
+.float-shadow {
+    font-family: roboto;
+    font-weight: 500;
+    padding: 1rem;
+    text-decoration: none;
+    text-align: center;
+    font-size: 1.5em;
+    text-decoration: none;
+    color: #fbfbfb;
+    display: inline-block;
+    position: relative;
+    transition-duration: 0.3s;
+    transition-property: transform;
+    transform: translateZ(0);
+
+}
+
+.float-shadow:before {
+    pointer-events: none;
+    position: absolute;
+    content: "";
+    top: 90%;
+    left: 5%;
+    height: 10px;
+    width: 90%;
+    opacity: 0;
+    background: radial-gradient(ellipse at center, rgba(251, 229, 35, 0.74) 0%, rgba(226, 222, 2, 0) 80%);
+    transition-duration: 0.3s;
+    transition-property: transform opacity;
+}
+
+.float-shadow:hover {
+    text-shadow: 1px 0px 19px #dba90d, 8px 1px 8px #ffc300, -6px 1px 14px #ffc200;
+    transform: translateY(-3px);
+}
+
+.float-shadow:hover:before {
+    opacity: 1;
+    transform: translateY(2px);
+}

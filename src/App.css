@@ -1,3 +1,6 @@
+@import url('./Css/navBar.css');
+
+
 header{
   padding: 0.5rem;
   background-image: url('./Images/fondoEstrellas.png');
@@ -8,12 +11,6 @@ header{
   width: 20rem;
   display: block;
   margin: auto;
-}
-
-.link{
-  padding: 1rem;
-  text-decoration: none;
-  color: #dba90d;
 }
 
 .item{

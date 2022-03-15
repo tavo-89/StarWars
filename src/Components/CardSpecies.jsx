@@ -1,11 +1,5 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import { Grid } from '@material-ui/core';
-import { Link } from 'react-router-dom';
+import {makeStyles, Card, CardActions, Button, Typography, Grid } from '@material-ui/core'
 
 const useStyles = makeStyles({
     root: {
@@ -44,7 +38,11 @@ const Cardspecies = ({dato}) => {
             <CardActions className={classes.button}>
 
                 <Button size="small" color="primary">
-                    nada
+                    Agregar a Favoritos
+                </Button>
+
+                <Button size="small" color="primary">
+                    learn more
                 </Button>
 
 

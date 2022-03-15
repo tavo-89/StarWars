@@ -1,11 +1,10 @@
 import { useState, useEffect } from 'react'
 
-
-
 export const useFetch = (url) => {
     const [data, setData] = useState(null)
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(null)
+
 
     useEffect(() => {
 
@@ -59,8 +58,10 @@ export const useFetch = (url) => {
 
     }, [url])//este useEffect se va a actualizar cuando se haga una peticion a la url
 
+
     const handleNext = ()=> {
         const siguiente = data && data.next
+        console.log(siguiente)
 
         fetch(siguiente)
         .then((res)=> res.json())
@@ -75,5 +76,5 @@ export const useFetch = (url) => {
         .then((data)=> setData(data))
     }
 
-    return { data, loading, error, handleNext, handlePrev }
+    return { data, loading, error,  handleNext, handlePrev}
 }

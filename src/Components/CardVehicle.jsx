@@ -1,10 +1,5 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import { Grid } from '@material-ui/core';
+import {makeStyles, Card, CardActions, Button, Typography, Grid } from '@material-ui/core'
 
 const useStyles = makeStyles({
     root: {
@@ -42,10 +37,11 @@ const Cardvehicle = ({data}) => {
                 <CardActions className={classes.button}>
 
                     <Button size="small" color="primary">
-                    Share
+                        Agregar a Favoritos
                     </Button>
+
                     <Button size="small" color="primary">
-                    Learn More
+                        learn more
                     </Button>
 
                 </CardActions>

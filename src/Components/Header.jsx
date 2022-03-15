@@ -19,18 +19,19 @@ const Header = () => {
 
     return (
         <div>
-            <AppBar position="sticky">
+            <AppBar  position="sticky">
                 <Link to="/"> <img className="logo" src={Logo} alt="Logo Star Wars" /> </Link>
                 
-                <Container maxWidth='lg'>
+                <Container className='appBar' maxWidth='lg'>
                     <Toolbar disableGutters>
                         <Hidden smDown>
-                            <Link className='link' to="/">Home</Link>
-                            <Link className='link' to="/planets">Planets </Link>
-                            <Link className="link" to='/people'>People</Link>
-                            <Link className="link" to='/species'>Species</Link>
-                            <Link className="link" to='/vehicles'>Vehicles</Link>
-                            <Link className="link" to='/starships'>Starships</Link>
+                            <Link rel="float-shadow" className="button float-shadow" to="/">Home</Link>
+                            <Link rel="float-shadow" className="button float-shadow" to="/planets">Planets </Link>
+                            <Link rel="float-shadow" className="button float-shadow" to='/people'>People</Link>
+                            <Link rel="float-shadow" className="button float-shadow" to='/species'>Species</Link>
+                            <Link rel="float-shadow" className="button float-shadow" to='/vehicles'>Vehicles</Link>
+                            <Link rel="float-shadow" className="button float-shadow" to='/starships'>Starships</Link>
+                            <Link rel="float-shadow" className="button float-shadow" to='/favoritos'>Favoritos</Link>
                         </Hidden>
                         <Hidden mdUp>
                             <IconButton className={classes.burgerIcon}>
@@ -41,15 +42,16 @@ const Header = () => {
                 </Container>
                 <SwipeableDrawer anchor="left" open={open} onOpen={()=>setOpen(true)} onClose={()=> setOpen(false)}>
                     <IconButton>
-                        <ChevronLeft onCLick={()=>setOpen(false)}/>
+                        <ChevronLeft onClick={()=>setOpen(false)} onKeyPress={()=>setOpen(false)} role='button' />
                     </IconButton>
                     <Divider/>
-                        <Link className='link' to="/">Home</Link>
-                        <Link className='link' to="/planets">Planets </Link>
-                        <Link className="link" to='/people'>People</Link>
-                        <Link className="link" to='/species'>Species</Link>
-                        <Link className="link" to='/vehicles'>Vehicles</Link>
-                        <Link className="link" to='/starships'>Starships</Link>
+                        <Link rel="float-shadow" className="button float-shadow" to="/">Home</Link>
+                        <Link rel="float-shadow" className="button float-shadow" to="/planets">Planets </Link>
+                        <Link rel="float-shadow" className="button float-shadow" to='/people'>People</Link>
+                        <Link rel="float-shadow" className="button float-shadow" to='/species'>Species</Link>
+                        <Link rel="float-shadow" className="button float-shadow" to='/vehicles'>Vehicles</Link>
+                        <Link rel="float-shadow" className="button float-shadow" to='/starships'>Starships</Link>
+                        <Link rel="float-shadow" className="button float-shadow" to='/favoritos'>Favoritos</Link>
                 </SwipeableDrawer>
             </AppBar>
         </div>
