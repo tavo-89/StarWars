@@ -1,5 +1,5 @@
 import { Grid } from "@material-ui/core";
-import React from "react";
+import React, { useState } from "react";
 import {useFetch} from '../Hooks/useFetch'
 import Loader from '../Components/Loader'
 import Message from '../Components/Message'
@@ -7,10 +7,13 @@ import CardSpecies from '../Components/CardSpecies'
 
 const Species = () => {
 
-    const {data, error, loading, handleNext, handlePrev} = useFetch('https://swapi.dev/api/species/?page=1')
+    const [page, setPage] = useState(1);
+
+    let url = `https://swapi.dev/api/species/?page=${page}`
+    const {data, error, loading} = useFetch(url)
+    
 
     let db = data
-    console.log(db)
 
     if (!db) {
         return null
@@ -18,7 +21,17 @@ const Species = () => {
     if (error) {
         return <Message msg={`ERROR${error.status}: ${error.statusText}`} bgColor='#dc3545'/>
     }
-    let page = db.next.match(/[0-9]+/) - 1
+    const totalCount = Math.ceil(db.count / 10) * 10
+
+    const handlePage = (number)=>{
+
+        if (!db.previous && page + number <= 0) return;
+        if (!db.next && page + number >= totalCount) return;
+
+        setPage(page + number);
+
+    }
+
 
     return (
         <div>
@@ -38,9 +51,9 @@ const Species = () => {
 
             </Grid>
             <nav>
-                <button onClick={handlePrev} disabled={!db.previous}>Previusly</button>
+                <button onClick={()=> handlePage(-1)} disabled={!db.previous}>Previusly</button>
                 {page}
-                <button onClick={handleNext} disabled={!db.next}>Next</button>
+                <button onClick={()=> handlePage(+1)} disabled={!db.next}>Next</button>
             </nav>
         </div>
     );

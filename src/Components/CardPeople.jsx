@@ -1,11 +1,11 @@
 import React from 'react';
 import {useFetch} from '../Hooks/useFetch'
-import {makeStyles, Card, CardActions, Button, Typography, Grid } from '@material-ui/core'
+import {makeStyles, Card, CardActions, Button, Typography, Grid, Modal, Fade, Backdrop } from '@material-ui/core'
 import { Link } from 'react-router-dom';
 
 
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
     root: {
         width: 300,
         maxWidth: 345,
@@ -18,16 +18,39 @@ const useStyles = makeStyles({
         justifyContent:'space-around'
     },
     card: {
-        justifyContent: 'center'
-    }
-    });  
-
-    const CardPeoples = ({dato}) => {
-
-    const classes = useStyles();
-    const {data: homeWorld} = useFetch(dato.homeworld)
         
+        justifyContent: 'center'
+    },
+    modal: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    paper: {
+        backgroundColor: theme.palette.background.paper,
+        border: '2px solid #000',
+        boxShadow: theme.shadows[5],
+        padding: theme.spacing(2, 4, 3),
+    },
+})); 
+
+    const CardPeople = ({dato}) => {
+
+    const {data: homeWorld} = useFetch(dato.homeworld)
+    console.log(homeWorld)
     let planeta = dato.homeworld
+    const classes = useStyles();
+    const [open, setOpen] = React.useState(false);
+
+    const handleOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+
+
     let id= planeta.match(/[0-9]+/)
     
     return (
@@ -35,12 +58,7 @@ const useStyles = makeStyles({
             <Card className={classes.root}> 
 
                 <Typography gutterBottom variant="h3" component="h2">{dato.name}</Typography>
-                    <ul>
-                        <li>Edad: {dato.birth_year}</li>
-                        <li> Genero: {dato.gender}</li>
-                        <li> Altura: {dato.height}cm</li>
-                        <li> Planeta de Origen: <Link to={`/planet/${id}`}>{homeWorld != null ? homeWorld.name : planeta}</Link> </li>
-                    </ul>
+                    
                 
             <CardActions className={classes.button}>
 
@@ -48,7 +66,7 @@ const useStyles = makeStyles({
                     Agregar a Favoritos
                 </Button>
 
-                <Button size="small" color="primary">
+                <Button size="small" color="primary"  onClick={handleOpen}>
                     learn more
                 </Button>
 
@@ -56,8 +74,37 @@ const useStyles = makeStyles({
             </CardActions>
 
             </Card>
+
+            {/* MODAL */}
+            <Modal
+                    aria-labelledby="transition-modal-title"
+                    aria-describedby="transition-modal-description"
+                    className={classes.modal}
+                    open={open}
+                    onClose={handleClose}
+                    closeAfterTransition
+                    BackdropComponent={Backdrop}
+                    BackdropProps={{
+                    timeout: 500,
+                    }}
+                >
+                    <Fade in={open}>
+
+                        <div className={classes.paper}>
+                            <ul>
+                                <li>Edad: {dato.birth_year}</li>
+                                <li> Genero: {dato.gender}</li>
+                                <li> Altura: {dato.height}cm</li>
+                                <li> Planeta de Origen: <Link to={`/planet/${id}`}>{homeWorld != null ? homeWorld.name : planeta}</Link> </li>
+                            </ul>
+                        </div>
+
+                    </Fade>
+
+                </Modal>
+
         </Grid>
         );
 }
 
-export default CardPeoples;
+export default CardPeople;

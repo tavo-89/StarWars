@@ -59,22 +59,5 @@ export const useFetch = (url) => {
     }, [url])//este useEffect se va a actualizar cuando se haga una peticion a la url
 
 
-    const handleNext = ()=> {
-        const siguiente = data && data.next
-        console.log(siguiente)
-
-        fetch(siguiente)
-        .then((res)=> res.json())
-        .then((data)=> setData(data))
-    }
-
-    const handlePrev= ()=> {
-        const anterior = data && data.previous
-
-        fetch(anterior)
-        .then((res)=>res.json())
-        .then((data)=> setData(data))
-    }
-
-    return { data, loading, error,  handleNext, handlePrev}
+    return { data, loading, error}
 }
