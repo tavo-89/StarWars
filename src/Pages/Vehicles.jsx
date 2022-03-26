@@ -7,8 +7,8 @@ import Message from '../Components/Message'
 
 const Vehicles = () => {
 
+    
     const [page, setPage] = useState(1);
-
     let url = `https://swapi.dev/api/vehicles/?page=${page}`
     const {data, error, loading} = useFetch(url)
     

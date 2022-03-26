@@ -5,7 +5,6 @@ export const useFetch = (url) => {
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(null)
 
-
     useEffect(() => {
 
     const abortController = new AbortController()
@@ -49,7 +48,6 @@ export const useFetch = (url) => {
             }
 
         }
-
 
         return ()=> abortController.abort()
     }

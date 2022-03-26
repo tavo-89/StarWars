@@ -8,13 +8,11 @@ import Planet from './Pages/Planet'
 import Species from './Pages/Species';
 import Vehicles from './Pages/Vehicles';
 import Starships from './Pages/Starships';
-import Favoritos from './Components/Favoritos';
-
-
+import Footer from './Components/Footer';
 
 function App() {
   return (
-    <div>
+    <div className='cuerpo'>
       <Router>
 
         <Header/>  
@@ -27,13 +25,12 @@ function App() {
             <Route path='/species' element={<Species/>}/>
             <Route path='/vehicles' element={<Vehicles/>}/>
             <Route path='/starships' element={<Starships/>}/>
-
-            <Route path='/favoritos' element={<Favoritos/>}/>
             
             <Route path='planet/:id' element={<Planet/>} />
           </Routes>
 
       </Router>
+      <Footer/>
     </div>
   );
 }

@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
     },
 })); 
 
-const CardPlanets = ({data}) => {
+const CardPlanets = ({data, addFavorite}) => {
 
     
     let diametro = new Intl.NumberFormat().format(data.diameter)
@@ -56,7 +56,7 @@ const CardPlanets = ({data}) => {
                 
             <CardActions className={classes.button}>
 
-                <Button size="small" color="primary">
+                <Button size="small" color="primary" onClick={addFavorite}>
                 Agregar a favoritos
                 </Button>
                 <Button size="small" color="primary" onClick={handleOpen}>

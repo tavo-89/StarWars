@@ -37,9 +37,11 @@ const useStyles = makeStyles((theme) => ({
     const CardPeople = ({dato}) => {
 
     const {data: homeWorld} = useFetch(dato.homeworld)
-    console.log(homeWorld)
+    
     let planeta = dato.homeworld
+
     const classes = useStyles();
+    
     const [open, setOpen] = React.useState(false);
 
     const handleOpen = () => {
