@@ -1,23 +1,11 @@
 @import url('./Css/navBar.css');
 @import url('./Css/footer.css');
+@import url('./Css/home.css');
 
-
-
-header{
-  padding: 0.5rem;
-  background-image: url('./Images/fondoEstrellas.png');
-  background-size: cover;
+body{
+  background-image: url('./Images/backGroundStars.jpg') ;
 }
 
-.logo{
-  width: 20rem;
-  display: block;
-  margin: auto;
-}
-
-.item{
-  height: 15%;
-}
 
 /* LOADER */
 .lds-ripple {

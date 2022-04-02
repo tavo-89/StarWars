@@ -42,7 +42,7 @@ const Header = () => {
     const classes = useStyles()
 
     return (
-        <div>
+        <div className="cabecera">
             <AppBar  position="sticky">
                 <Link to="/"> <img className="logo" src={Logo} alt="Logo Star Wars" /> </Link>
                 

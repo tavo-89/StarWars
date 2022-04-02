@@ -102,10 +102,11 @@ const Contactform = () => {
                     status: res.status || "00",
                     statusText: res.statusText || "Ocurrió un error",
                 })
+                setErrors({})
+                setInputs(initialInputs)
             })
 
             .catch((error) => error);
-            setInputs(initialInputs)
 
         }else{
             return
@@ -119,12 +120,12 @@ const Contactform = () => {
 
             <form onSubmit={handleSubmit} className={classes.root} noValidate autoComplete="off">
             
-            <TextField name='nombre' label="Nombre" variant="outlined" onChange={handleInput} onBlur={handleBlur} helperText={errors.nombre } error={errors.nombre}/>
+            <TextField name='nombre' label="Nombre" variant="outlined" onChange={handleInput} onBlur={handleBlur} helperText={errors.nombre } error={errors.nombre ? true : false}/>
 
-            <TextField name='email' label="E-Mail" variant="outlined" inputMode='email' onChange={handleInput} onBlur={handleBlur} helperText={errors.email } error={errors.email} />
+            <TextField name='email' label="E-Mail" variant="outlined" inputMode='email' onChange={handleInput} onBlur={handleBlur} helperText={errors.email } error={errors.email ? true : false} />
             <Divider/>
-            <TextField name='asunto' label="Asunto" variant="outlined" onChange={handleInput} onBlur={handleBlur} helperText={errors.asunto } error={errors.asunto} />
-            <TextField name='comentario' className={classes.comentario} multiline={true} rows={5} label="Comentario" variant="outlined" inputMode='text' onChange={handleInput} onBlur={handleBlur} helperText={errors.comentario } error={errors.comentario} />
+            <TextField name='asunto' label="Asunto" variant="outlined" onChange={handleInput} onBlur={handleBlur} helperText={errors.asunto } error={errors.asunto ? true : false} />
+            <TextField name='comentario' className={classes.comentario} multiline={true} rows={5} label="Comentario" variant="outlined" inputMode='text' onChange={handleInput} onBlur={handleBlur} helperText={errors.comentario } error={errors.comentario ? true : false} />
             
             <input type="submit" value='Enviar' />
 
