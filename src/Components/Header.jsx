@@ -32,6 +32,10 @@ const useStyles = makeStyles((theme)=> ({
     },
     flecha: {
         color:'#dba90d'
+    },
+    menuBarra: {
+        display: 'flex',
+        justifyContent: 'center',    
     }
 }))
 
@@ -46,7 +50,7 @@ const Header = () => {
             <AppBar  position="sticky">
                 <Link to="/"> <img className="logo" src={Logo} alt="Logo Star Wars" /> </Link>
                 
-                <Container className='appBar' maxWidth='lg'>
+                <Container className={`${classes.menuBarra} appBar`} maxWidth='lg'>
 
                     <Toolbar disableGutters>
 

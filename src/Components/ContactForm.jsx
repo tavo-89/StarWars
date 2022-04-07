@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {makeStyles, TextField, Button, Divider} from '@material-ui/core'
+import {makeStyles, TextField, Divider, withStyles} from '@material-ui/core'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -7,11 +7,42 @@ const useStyles = makeStyles((theme) => ({
             margin: theme.spacing(1),
             width: '25ch',
         },
+        
     },
     comentario: {
         width: '70vh',
+    },
+    inputs: {
+        
     }
 }));
+
+    const CssTextField = withStyles({
+        root: {
+            '& .MuiFormLabel-root': {
+                color: 'rgb(211, 163, 13)'
+            },
+            '& label.Mui-focused': {
+                color: '#dba90d',
+                borderShadow:'0px 0px 6px #ffc909'
+            },
+            '& .MuiInput-underline:after': {
+                borderBottomColor: 'green',
+            },
+            '& .MuiOutlinedInput-root': {
+                '& fieldset': {
+                borderColor: '#dba90d',
+                },
+                '&:hover fieldset': {
+                borderColor: 'yellow',
+                },
+                '&.Mui-focused fieldset': {
+                borderColor: '#dba90d',
+                },
+                
+            },
+        },
+    })(TextField);
 
 const initialInputs = {
     nombre:'',
@@ -119,13 +150,13 @@ const Contactform = () => {
             <h2>Formulario de contacto</h2>
 
             <form onSubmit={handleSubmit} className={classes.root} noValidate autoComplete="off">
-            
-            <TextField name='nombre' label="Nombre" variant="outlined" onChange={handleInput} onBlur={handleBlur} helperText={errors.nombre } error={errors.nombre ? true : false}/>
 
-            <TextField name='email' label="E-Mail" variant="outlined" inputMode='email' onChange={handleInput} onBlur={handleBlur} helperText={errors.email } error={errors.email ? true : false} />
+            <CssTextField name='nombre' label="Nombre"  variant="outlined" onChange={handleInput} onBlur={handleBlur} helperText={errors.nombre } error={errors.nombre ? true : false}/>
+
+            <CssTextField className={`${classes.inputs} inputForm`} name='email' label="E-Mail" variant="outlined" inputMode='email' onChange={handleInput} onBlur={handleBlur} helperText={errors.email } error={errors.email ? true : false} />
             <Divider/>
-            <TextField name='asunto' label="Asunto" variant="outlined" onChange={handleInput} onBlur={handleBlur} helperText={errors.asunto } error={errors.asunto ? true : false} />
-            <TextField name='comentario' className={classes.comentario} multiline={true} rows={5} label="Comentario" variant="outlined" inputMode='text' onChange={handleInput} onBlur={handleBlur} helperText={errors.comentario } error={errors.comentario ? true : false} />
+            <CssTextField className={`${classes.inputs} inputForm`} name='asunto' label="Asunto" variant="outlined" onChange={handleInput} onBlur={handleBlur} helperText={errors.asunto } error={errors.asunto ? true : false} />
+            <CssTextField name='comentario' className={`${classes.comentario} ${classes.inputs} inputForms`} multiline={true} rows={5} label="Comentario" variant="outlined" inputMode='text' onChange={handleInput} onBlur={handleBlur} helperText={errors.comentario } error={errors.comentario ? true : false} />
             
             <input type="submit" value='Enviar' />
 
