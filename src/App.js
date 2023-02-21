@@ -9,13 +9,16 @@ import Species from './Pages/Species';
 import Vehicles from './Pages/Vehicles';
 import Starships from './Pages/Starships';
 import Footer from './Components/Footer';
+import Error404 from './Pages/Error404';
+
+
 
 function App() {
   return (
     <div className='cuerpo'>
       <Router>
 
-        <Header/>  
+        <Header/> 
         
           <Routes>
             <Route path='/' element={<Home/>}/>
@@ -27,6 +30,9 @@ function App() {
             <Route path='/starships' element={<Starships/>}/>
             
             <Route path='planet/:id' element={<Planet/>} />
+
+            <Route path='*' element={<Error404/>}/>
+
           </Routes>
 
       </Router>

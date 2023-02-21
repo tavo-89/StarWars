@@ -1,10 +1,11 @@
 import React, {useState} from "react";
 import { AppBar, Container, makeStyles, Toolbar, Hidden, IconButton, Divider, Drawer } from "@material-ui/core";
 import MenuIcon from '@material-ui/icons/Menu'
-import SearchIcon from '@material-ui/icons/Search';
 import { ChevronLeft } from "@material-ui/icons";
 import { Link } from "react-router-dom";
 import Logo from '../Images/Star_Wars_Logo.png'
+
+
 
 const useStyles = makeStyles((theme)=> ({
     input: {
@@ -58,6 +59,7 @@ const Header = () => {
                             <Link rel="float-shadow" className="button float-shadow" to="/">Home</Link>
                             <Link rel="float-shadow" className="button float-shadow" to="/planets">Planets </Link>
                             <Link rel="float-shadow" className="button float-shadow" to='/people'>People</Link>
+
                             <Link rel="float-shadow" className="button float-shadow" to='/species'>Species</Link>
                             <Link rel="float-shadow" className="button float-shadow" to='/vehicles'>Vehicles</Link>
                             <Link rel="float-shadow" className="button float-shadow" to='/starships'>Starships</Link>

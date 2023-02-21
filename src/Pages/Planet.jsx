@@ -3,6 +3,7 @@ import {useFetch} from '../Hooks/useFetch'
 import { useParams } from 'react-router-dom';
 import Message from '../Components/Message'
 
+
 const Planet = () => {
     const {id} = useParams()
 
@@ -20,6 +21,7 @@ const Planet = () => {
     
     return (
         <div>
+            
             <h1>Planeta {data.name}</h1>
             <ul>
                 <li>Periodo de Rotacion: {data.rotation_period} Hs</li>

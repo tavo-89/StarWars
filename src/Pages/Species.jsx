@@ -4,6 +4,7 @@ import {useFetch} from '../Hooks/useFetch'
 import Loader from '../Components/Loader'
 import Message from '../Components/Message'
 import CardSpecies from '../Components/CardSpecies'
+import ButtonPage from "../Components/ButtonPage";
 
 const Species = () => {
 
@@ -12,24 +13,11 @@ const Species = () => {
     let url = `https://swapi.dev/api/species/?page=${page}`
     const {data, error, loading} = useFetch(url)
     
-
-    let db = data
-
-    if (!db) {
+    if (!data) {
         return null
     }
     if (error) {
         return <Message msg={`ERROR${error.status}: ${error.statusText}`} bgColor='#dc3545'/>
-    }
-    const totalCount = Math.ceil(db.count / 10) * 10
-
-    const handlePage = (number)=>{
-
-        if (!db.previous && page + number <= 0) return;
-        if (!db.next && page + number >= totalCount) return;
-
-        setPage(page + number);
-
     }
 
 
@@ -45,16 +33,13 @@ const Species = () => {
                 >
 
                     {loading && <Loader/>}
-                {db.results.map((vehiculo) => {
+                {data.results.map((vehiculo) => {
                 return <CardSpecies key={vehiculo.url} dato={vehiculo} />;
                 })}
 
             </Grid>
-            <nav>
-                <button onClick={()=> handlePage(-1)} disabled={!db.previous}>Previusly</button>
-                {page}
-                <button onClick={()=> handlePage(+1)} disabled={!db.next}>Next</button>
-            </nav>
+
+            <ButtonPage setPage={setPage} data={data} page={page} />
         </div>
     );
 }

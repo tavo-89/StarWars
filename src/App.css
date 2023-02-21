@@ -1,6 +1,7 @@
 @import url('./Css/navBar.css');
 @import url('./Css/footer.css');
 @import url('./Css/home.css');
+@import url('./Css/cards.css');
 
 body{
   background-image: url('./Images/backGroundStars.jpg') ;

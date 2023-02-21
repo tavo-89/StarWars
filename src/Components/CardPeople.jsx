@@ -9,6 +9,7 @@ const useStyles = makeStyles((theme) => ({
     root: {
         width: 300,
         maxWidth: 345,
+        boxShadow: '6px 5px 21px 0px #DBA90D'
     },
     media: {
         height: 140,
